@@ -28,13 +28,12 @@ Flux Todo List needs:
 # Go to the projecto folder
 $ cd /react-flux-todo-list
 $ npm install
-$ npm server
 ```
 
 ## Start development environment
 
 ```
-$ npm run build
+$ npm start
 $ npm run simple-server
 ```
 
