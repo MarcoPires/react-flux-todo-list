@@ -1,0 +1,20 @@
+{
+  "name": "react-flux-todo-list",
+  "version": "1.0.0",
+  "description": "Flux Todo List is an application based on the tutorial of [Flux quick start - Todo List](https://facebook.github.io/flux/docs/todo-list.html).",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "watchify -o public/js/bundle.js -v -d public/js/app.js",
+    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js"
+  },
+  "devDependencies": {
+    "browserify": "^6.2.0",
+    "envify": "^3.0.0",
+    "jest-cli": "^0.4.3",
+    "reactify": "^0.15.2",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1"
+  },
+  "author": "Marco Pires",
+  "license": "MIT"
+}
