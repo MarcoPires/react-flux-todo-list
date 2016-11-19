@@ -7,6 +7,7 @@ var React = require('react');
  * Local modules
  */
 var TodoActions = require('../actions/TodoActions');
+var ReactComponent  = require('../bindStateToComponents');
 
  /**
  * Local module components
@@ -14,33 +15,44 @@ var TodoActions = require('../actions/TodoActions');
 var TodoTextInput = require('./TodoTextInput.react');
 
 
-var Header = React.createClass({
-	
-	/**
-	 * Event handler called within TodoTextInput.
-	 * Defining this here allows TodoTextInput to be used in multiple places
-	 * in different ways.
-	 * @param  {string} text 
-	 */
-	_onSave: function(text) {
-		if (text.trim()) TodoActions.create(text); 
-	},
+/**
+ * Mapping properties to dispatchers
+ * 
+ * @param  {object} actions 
+ * @return {object}       
+ */
+var mapDispatchToProps = function (actions) {
+	return{
 
+		/**
+		 * Event handler called within TodoTextInput.
+		 * Defining this here allows TodoTextInput to be used in multiple places
+		 * in different ways.
+		 * @param  {string} text 
+		 */
+		onSave: function(text) {
+			if (text.trim())  actions.create(text);
+		}
+	};
+};
+
+var Header = ReactComponent({
+	
 	/**
 	 * @return {object} react component
 	 */
-	render: function() {
+	render: function(state, dispatch) {
 		return (
 			<header>
 				<h1>todos</h1>
 				<TodoTextInput
 					id          = "new-todo"
 					placeholder = "What needs to be done?"
-					onSave      = { this._onSave }
+					onSave      = { dispatch.onSave }
 				/>
 			</header>
 		);
 	}
-});
+}, null, mapDispatchToProps);
 
 module.exports = Header;
