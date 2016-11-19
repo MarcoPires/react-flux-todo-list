@@ -33,10 +33,9 @@ var TodoStore = assign({}, EventEmitter.prototype, {
 	 * @return {boolean}
 	 */
 	areAllComplete: function() {
-
-		for (var id in _todos) {
-			if (!_todos[id].complete) return false;
-		}
+		for (var i = 0; i < _todos.length; i++) {
+			if (!_todos[i].complete) return false;
+		};
 		return true;
 	},
 

@@ -13,7 +13,7 @@ var ReactComponent  = require('../bindStateToComponents');
  * Local module components
  */
 var Header = require('./Header.react');
-//var MainSection = require('./MainSection.react');
+var MainSection = require('./MainSection.react');
 var Footer = require('./Footer.react');
 
 
@@ -54,7 +54,7 @@ var TodoApp = ReactComponent({
 		return (
 			<div>
 				<Header />
-				
+				<MainSection />
 				<Footer />
 			</div>
 		);

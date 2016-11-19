@@ -13,6 +13,32 @@ var TodoActions = {
 			text       : text
 		});
 	},
+	/**
+	 * Mark all ToDos as complete
+	 */
+	toggleCompleteAll: function() {
+		AppDispatcher.dispatch({
+			actionType: Constants.TODO_TOGGLE_COMPLETE_ALL
+		});
+	},
+	
+	/**
+	 * Toggle whether a single ToDo is complete
+	 * @param  {object} todo
+	 */
+	toggleComplete: function(todo) {
+		var id 			= todo.id;
+		var actionType  = todo.complete ?
+			Constants.TODO_UNDO_COMPLETE :
+				Constants.TODO_COMPLETE;
+
+		AppDispatcher.dispatch({
+			actionType : actionType,
+			id         : id
+		});
+	},
+
+
 };
 
 module.exports = TodoActions;
