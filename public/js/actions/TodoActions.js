@@ -37,7 +37,15 @@ var TodoActions = {
 			id         : id
 		});
 	},
-
+	
+	/**
+	 * Delete all the completed ToDos
+	 */
+	destroyCompleted: function() {
+		AppDispatcher.dispatch({
+		  actionType: Constants.TODO_DESTROY_COMPLETED
+		});
+	}
 
 };
 

@@ -18,7 +18,8 @@ var ReactPropTypes = React.PropTypes;
  */
 var mapStateToProps = function(store) {
 	return {
-		allTodos: store.getAll()
+		allTodos           : store.getAll(),
+		numbCompletedTodos : store.getNumbCompleted()
 	};
 };
 
@@ -39,15 +40,22 @@ var mapDispatchToProps = function (actions) {
 	};
 };
 
-var getNumbCompleted = function(todos){
-	var count = 0;
-	
-	todos.map(function(todo){
-		if (todo.complete) count++;
-	});
-	return count;
-};
+/**
+ * Only render the button if there is completed items, else return null.
+ * @param  {number} completed
+ * @return {object} react component          
+ */
+var clearCompletedButton = function(completed, dispatch) {
+	if (!completed) return null;
 
+	return (
+		<button
+			id="clear-completed"
+			onClick={ dispatch.onClearCompletedClick }>
+				Clear completed ({ completed })
+		</button>
+	);
+};
 
 var Footer = ReactComponent({
 	
@@ -60,22 +68,11 @@ var Footer = ReactComponent({
 
 		if (total === 0) return null;
 	    
-	    var completed = getNumbCompleted(allTodos);
+	    var completed = state.numbCompletedTodos;
 	    var itemsLeft = total - completed;
 	    var itemsLeftPhrase = itemsLeft === 1 ? ' item ' : ' items ';
 	    itemsLeftPhrase += 'left';
 		
-		// Undefined and thus not rendered if no completed items are left.
-		var clearCompletedButton;
-		if (completed) {
-		  	clearCompletedButton =
-			<button
-				id="clear-completed"
-				onClick={ dispatch.onClearCompletedClick }>
-				Clear completed ({ completed })
-			</button>;
-		};
-
 		return (
 			<footer id="footer">
 				<span id="todo-count">
@@ -85,7 +82,7 @@ var Footer = ReactComponent({
 					{ itemsLeftPhrase }
 				</span>
 
-				{ clearCompletedButton }
+				{ clearCompletedButton( completed, dispatch ) }
 			</footer>
 		);
 	}

@@ -21,7 +21,7 @@ var _todos       = [];
  * 
  */
 AppDispatcher.register(function(action){
-	_todos = TodoReducers(action, _todos);
+	_todos = TodoReducers(action, _todos, TodoStore);
 	TodoStore.emitChange();
 	console.log("state: ", _todos);
 });
@@ -46,6 +46,20 @@ var TodoStore = assign({}, EventEmitter.prototype, {
 	getAll: function() {
 		return _todos;
 	},
+
+	/**
+	 * Get the number of completed TODOs.
+	 * @return {number} 
+	 */
+	getNumbCompleted: function() {
+		var count = 0;
+		
+		_todos.map(function(todo){
+			if (todo.complete) count++;
+		});
+		return count;
+	},
+
 	/**
 	 * Trigger change event
 	 */
