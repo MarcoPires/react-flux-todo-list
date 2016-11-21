@@ -5,7 +5,7 @@
   "repository": "https://github.com/MarcoPires/react-flux-todo-list",
   "main": "public/index.html",
   "scripts": {
-    "simple-server": "cd public && live-server --port=1234 --entry-file=index.html",
+    "simple-server": "cd public && live-server --port=1234 --entry-file=index.html --watch=js/bundle.js",
     "start": "watchify -o public/js/bundle.js -v -d public/js/app.js",
     "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js"
   },

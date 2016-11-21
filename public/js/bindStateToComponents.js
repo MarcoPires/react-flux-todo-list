@@ -21,15 +21,19 @@ var ReactComponent = function(ComponentOptions, mapStateToProps, mapDispatchToPr
 		},
 
 		componentDidMount: function(){
-			if(ComponentOptions.componentDidMount) ComponentOptions.componentDidMount.call(this, TodoStore);
+			if(ComponentOptions.componentDidMount) 
+				ComponentOptions.componentDidMount.call(this, TodoStore);
 		},
 
 		componentWillUnmount: function(){
-			if(ComponentOptions.componentWillUnmount) ComponentOptions.componentWillUnmount.call(this, TodoStore);
+			if(ComponentOptions.componentWillUnmount) 
+				ComponentOptions.componentWillUnmount.call(this, TodoStore);
 		},
 
 		render: function(){
-			return ComponentOptions.render.call(this, mapStateToProps(TodoStore), mapDispatchToProps(TodoActions))
+			return ComponentOptions.render.call(this, 
+				mapStateToProps(TodoStore),
+				mapDispatchToProps(TodoActions));
 		}
 	}));
 
