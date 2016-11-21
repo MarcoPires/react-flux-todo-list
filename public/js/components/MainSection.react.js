@@ -45,7 +45,10 @@ var mapDispatchToProps = function (actions) {
 };
 
 var MainSection = ReactComponent({
-
+	
+	/**
+	 * @return {object} react component
+	 */
 	render: function(state, dispatch){
 		var allTodos = state.allTodos;
 

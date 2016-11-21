@@ -13,6 +13,19 @@ var TodoActions = {
 			text       : text
 		});
 	},
+
+	/**
+	 * @param  {string} id The ID of the ToDo item
+	 * @param  {string} text
+	 */
+	updateText: function(id, text) {
+		AppDispatcher.dispatch({
+			actionType : Constants.TODO_UPDATE_TEXT,
+			id         : id,
+			text       : text
+		});
+	},
+
 	/**
 	 * Mark all ToDos as complete
 	 */
@@ -21,7 +34,7 @@ var TodoActions = {
 			actionType: Constants.TODO_TOGGLE_COMPLETE_ALL
 		});
 	},
-	
+
 	/**
 	 * Toggle whether a single ToDo is complete
 	 * @param  {object} todo
@@ -45,8 +58,18 @@ var TodoActions = {
 		AppDispatcher.dispatch({
 		  actionType: Constants.TODO_DESTROY_COMPLETED
 		});
-	}
+	},
 
+	/**
+	 * Delete todo
+	 * @param  {string} id
+	 */
+	destroy: function(id) {
+		AppDispatcher.dispatch({
+			actionType : Constants.TODO_DESTROY,
+			id         : id
+		});
+	}
 };
 
 module.exports = TodoActions;

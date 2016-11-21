@@ -17,6 +17,8 @@ var ReactComponent = function(ComponentOptions, mapStateToProps, mapDispatchToPr
 	var genericComponent   = React.createClass(assign({}, ComponentOptions, {
 		
 		getInitialState: function() {
+			if(ComponentOptions.getInitialState) 
+				return ComponentOptions.getInitialState.call(this, TodoStore);
 			return mapStateToProps(TodoStore);
 		},
 
@@ -33,7 +35,7 @@ var ReactComponent = function(ComponentOptions, mapStateToProps, mapDispatchToPr
 		render: function(){
 			return ComponentOptions.render.call(this, 
 				mapStateToProps(TodoStore),
-				mapDispatchToProps(TodoActions));
+				mapDispatchToProps.call(this, TodoActions));
 		}
 	}));
 

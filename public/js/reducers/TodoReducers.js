@@ -83,6 +83,24 @@ var TodoReducers = function(action, state, store) {
 			return state;
 		
 
+		case Constants.TODO_UPDATE_TEXT:
+			text = action.text || '';
+
+			if (text !== '') return update(state, action.id, {text: text.trim()})
+			return state;		
+
+
+
+		case Constants.TODO_COMPLETE:
+			return update(state, action.id, {complete: true});
+
+
+
+		case Constants.TODO_UNDO_COMPLETE:
+			return update(state, action.id, {complete: false});
+
+
+
 		case Constants.TODO_TOGGLE_COMPLETE_ALL:
 			return updateAll(state, { complete: !store.areAllComplete() });
 

@@ -6,7 +6,6 @@ var React = require('react');
 /**
  * Local modules
  */
-var TodoActions = require('../actions/TodoActions');
 var ReactComponent  = require('../bindStateToComponents');
 
 
